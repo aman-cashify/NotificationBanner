@@ -46,20 +46,22 @@ public class GrowingNotificationBanner: BaseNotificationBanner {
                 }
                 
                 if leftView != nil {
-                    boundingWidth -= sideViewSize + padding
+                    boundingWidth -= iconSize + padding
                 }
                 
                 if rightView != nil {
-                    boundingWidth -= sideViewSize + padding
+                    boundingWidth -= iconSize + padding
                 }
                 
-                let titleHeight = ceil(titleLabel?.sizeThatFits(
-                    CGSize(width: boundingWidth,
-                           height: .greatestFiniteMagnitude)).height ?? 0.0)
+                let titleHeight = ceil(titleLabel?.text?.height(
+                    forConstrainedWidth: boundingWidth,
+                    font: titleFont
+                    ) ?? 0.0)
                 
-                let subtitleHeight = ceil(subtitleLabel?.sizeThatFits(
-                    CGSize(width: boundingWidth,
-                           height: .greatestFiniteMagnitude)).height ?? 0.0)
+                let subtitleHeight = ceil(subtitleLabel?.text?.height(
+                    forConstrainedWidth: boundingWidth,
+                    font: subtitleFont
+                    ) ?? 0.0)
                 
                 let topOffset: CGFloat = shouldAdjustForNotchFeaturedIphone() ? 44.0 : verticalSpacing
                 let minHeight: CGFloat = shouldAdjustForNotchFeaturedIphone() ? 88.0 : 64.0
@@ -93,7 +95,7 @@ public class GrowingNotificationBanner: BaseNotificationBanner {
     private var rightView: UIView?
     
     /// Square size for left/right view if set
-    private let sideViewSize: CGFloat
+    private let iconSize: CGFloat = 24.0
     
     /// Font used for the title label
     internal var titleFont: UIFont = UIFont.systemFont(ofSize: 17.5, weight: UIFont.Weight.bold)
@@ -107,12 +109,10 @@ public class GrowingNotificationBanner: BaseNotificationBanner {
                 rightView: UIView? = nil,
                 style: BannerStyle = .info,
                 colors: BannerColorsProtocol? = nil,
-                iconPosition: IconPosition = .center,
-                sideViewSize: CGFloat = 24.0) {
+                iconPosition: IconPosition = .center) {
         
         self.leftView = leftView
         self.rightView = rightView
-        self.sideViewSize = sideViewSize
         
         super.init(style: style, colors: colors)
         
@@ -132,7 +132,8 @@ public class GrowingNotificationBanner: BaseNotificationBanner {
         
         if let leftView = leftView {
             outerStackView.addArrangedSubview(leftView)
-            leftView.snp.makeConstraints { $0.size.equalTo(sideViewSize) }
+            
+            leftView.snp.makeConstraints { $0.size.equalTo(iconSize) }
         }
         
         outerStackView.addArrangedSubview(labelsView)
@@ -161,7 +162,8 @@ public class GrowingNotificationBanner: BaseNotificationBanner {
         
         if let rightView = rightView {
             outerStackView.addArrangedSubview(rightView)
-            rightView.snp.makeConstraints { $0.size.equalTo(sideViewSize) }
+            
+            rightView.snp.makeConstraints { $0.size.equalTo(iconSize) }
         }
         
         contentView.addSubview(outerStackView)
@@ -199,28 +201,28 @@ public extension GrowingNotificationBanner {
         
         if let titleFont = titleFont {
             self.titleFont = titleFont
-            titleLabel!.font = titleFont
+            titleLabel?.font = titleFont
         }
         
         if let titleColor = titleColor {
-            titleLabel!.textColor = titleColor
+            titleLabel?.textColor = titleColor
         }
         
         if let titleTextAlign = titleTextAlign {
-            titleLabel!.textAlignment = titleTextAlign
+            titleLabel?.textAlignment = titleTextAlign
         }
         
         if let subtitleFont = subtitleFont {
             self.subtitleFont = subtitleFont
-            subtitleLabel!.font = subtitleFont
+            subtitleLabel?.font = subtitleFont
         }
         
         if let subtitleColor = subtitleColor {
-            subtitleLabel!.textColor = subtitleColor
+            subtitleLabel?.textColor = subtitleColor
         }
         
         if let subtitleTextAlign = subtitleTextAlign {
-            subtitleLabel!.textAlignment = subtitleTextAlign
+            subtitleLabel?.textAlignment = subtitleTextAlign
         }
         
         if titleFont != nil || subtitleFont != nil {
