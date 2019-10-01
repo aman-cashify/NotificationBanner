@@ -51,6 +51,12 @@ pod 'NotificationBannerSwift'
 
 Then add `import NotificationBannerSwift` at the top of each file you use NotificationBanner in your project.
 
+#### iOS13 
+
+```ruby
+pod 'NotificationBannerSwift', :git => 'https://github.com/Daltron/NotificationBanner', :branch => 'ios13'
+```
+
 #### Swift 4.2
 
 ```ruby
@@ -134,7 +140,7 @@ NotificationBanner has five prebuilt styles that you can choose from:
 public enum BannerStyle {
     case danger
     case info
-    case none
+    case customView
     case success
     case warning
 }
@@ -155,11 +161,11 @@ class CustomBannerColors: BannerColorsProtocol {
 
     internal func color(for style: BannerStyle) -> UIColor {
         switch style {
-            case .danger:   // Your custom .danger color
-            case .info:     // Your custom .info color
-            case .none:     // Your custom .none color
-            case .success:  // Your custom .success color
-            case .warning:  // Your custom .warning color
+            case .danger:	// Your custom .danger color
+            case .info:		// Your custom .info color
+            case .customView:	// Your custom .customView color
+            case .success:	// Your custom .success color
+            case .warning:	// Your custom .warning color
         }
     }
 
