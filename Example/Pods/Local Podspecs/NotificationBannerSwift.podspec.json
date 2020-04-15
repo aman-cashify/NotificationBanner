@@ -1,24 +1,24 @@
 {
   "name": "NotificationBannerSwift",
-  "version": "2.1.0",
+  "version": "2.5.1",
   "summary": "The easiest way to display in app notification banners in iOS.",
   "description": "NotificationBanner is an extremely customizable and lightweight library that makes the task of displaying in app notification banners and drop down alerts an absolute breeze in iOS.",
-  "homepage": "https://github.com/Daltron/NotificationBanner",
+  "homepage": "https://github.com/reglobe/NotificationBanner",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "Daltron": "daltonhint4@gmail.com"
+    "Piyush": "piyush.s@cashify.in"
   },
   "source": {
-    "git": "https://github.com/Daltron/NotificationBanner.git",
-    "tag": "2.1.0"
+    "git": "https://github.com/reglobe/NotificationBanner.git",
+    "tag": "2.5.1"
   },
   "platforms": {
     "ios": "10.0"
   },
-  "swift_version": "5.0",
+  "swift_versions": "5.0",
   "source_files": "NotificationBanner/Classes/**/*",
   "dependencies": {
     "SnapKit": [
@@ -27,5 +27,6 @@
     "MarqueeLabel": [
       "~> 4.0.0"
     ]
-  }
+  },
+  "swift_version": "5.0"
 }
